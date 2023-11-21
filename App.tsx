@@ -1,21 +1,19 @@
-import { StyleSheet, Text, SafeAreaView, Image, TouchableNativeFeedback, View, Alert, BackHandler, Platform, StatusBar } from 'react-native';
-const classNames = require('classnames');
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Welcome from './src/pages/Welcome';
+import Item from './src/pages/Item';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={{backgroundColor: "#fcc", flex:4}} />
-      <View style={{backgroundColor: "#ffc", flex:3}} />
-      <View style={{backgroundColor: "#cff", flex:2}} />
-      <View style={{backgroundColor: "#ccf", flex:1}} />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='welcome'>
+        <Stack.Screen name="welcome" component={Welcome}/>
+        <Stack.Screen name="item" component={Item}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "dodgerblue",
-    flexDirection: "row-reverse",
-    flex: 1,
-  },
-});
